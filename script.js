@@ -60,7 +60,6 @@ function capturePhoto() {
 
   canvas.width = width;
   canvas.height = height;
- // context.drawImage(video, 0, 0, width, height);
   context.save();
 if (useFrontCamera) {
   context.translate(width, 0);
@@ -68,6 +67,9 @@ if (useFrontCamera) {
 }
 context.drawImage(video, 0, 0, width, height);
 context.restore();
+
+  //context.drawImage(video, 0, 0, width, height);
+
   const dataUrl = canvas.toDataURL('image/png');
   const captionText = captionInput.value.trim();
 
@@ -186,7 +188,7 @@ function downloadPhoto() {
     scrollY: -window.scrollY,
     width: tempWidth,
     height: tempHeight,
-    scale: 2// 🔍 Higher scale = higher resolution (1 is default)
+    scale: DPI / 96 // 🔍 Higher scale = higher resolution (1 is default)
   }).then(canvas => {
     const resized = document.createElement('canvas');
     resized.width = tempWidth;
@@ -211,7 +213,7 @@ captureBtn.addEventListener('click', capturePhoto);
 resetBtn.addEventListener('click', resetPhotos);
 applyCaptionBtn.addEventListener('click', applyCaptions);
 
-downloadBtn.addEventListener('click', () => {
+downloadBtn.addEventListener('click', async () => {
   const inputFields = document.querySelectorAll('.fuji-frame input');
   inputFields.forEach(input => {
     input.style.display = 'none';
@@ -233,7 +235,10 @@ downloadBtn.addEventListener('click', () => {
   exportWrapper.style.padding = '30px';
   exportWrapper.style.boxSizing = 'border-box';
   exportWrapper.style.width = `${outputWidth}px`;
-  exportWrapper.style.height = `${outputHeight}px`;
+  // Temporarily allow auto height for proper rendering
+exportWrapper.style.height = 'auto';
+exportWrapper.style.minHeight = `${outputHeight}px`; // Optional fallback
+// exportWrapper.style.height = `${outputHeight}px`;
   exportWrapper.style.position = 'absolute';
   exportWrapper.style.top = '-10000px';
 
@@ -321,13 +326,20 @@ downloadBtn.addEventListener('click', () => {
   }
 
   document.body.appendChild(exportWrapper);
+  // Wait for one frame to ensure rendering
+  await new Promise(resolve => requestAnimationFrame(resolve));
+//removing shadow when exporting image
+  const frames = exportWrapper.querySelectorAll('.fuji-frame');
+  frames.forEach(frame => frame.classList.add('no-shadow'));
 
+  
   html2canvas(exportWrapper, {
     width: outputWidth,
-    height: outputHeight,
-    scale: 1,
+    //height: outputHeight,
+    scale: 2,
     scrollX: 0,
-    scrollY: -window.scrollY
+    scrollY: -window.scrollY,
+    useCORS: true
   }).then(canvas => {
     const link = document.createElement('a');
     link.download = `photobooth_${exportLayout}_${Date.now()}.png`;
@@ -335,6 +347,9 @@ downloadBtn.addEventListener('click', () => {
     link.click();
 
     document.body.removeChild(exportWrapper);
+//adding back shadows.
+    frames.forEach(frame => frame.classList.remove('no-shadow'));
+
 
     inputFields.forEach(input => {
       input.style.display = 'block';
