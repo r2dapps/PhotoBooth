@@ -222,7 +222,7 @@ button {
 /* -----------------------------------
    Fuji Frame Styling
 ----------------------------------- */
-.fuji-frame {
+/* .fuji-frame {
   background-color: white;
   padding: 10px 10px 30px 10px;
   border: none;
@@ -234,7 +234,28 @@ button {
   width: 100%;
   max-width: 100%;
   height: auto;
+} */
+.fuji-frame {
+  background-color: white;
+  padding: 10px 10px 40px 10px; /* Extra bottom space for caption */
+  border-radius: 4px;
+  border-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /*Polaroid shadow*/
+  border: 1px solid #c72020;
+  transform: rotate(-1deg); /* Optional tilt */
+  transition: transform 0.2s ease;
 }
+
+.fuji-frame:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+.fuji-frame.no-shadow {
+  box-shadow: none !important;
+}
+
 
 .fuji-frame img {
   width: 100%;
@@ -247,7 +268,7 @@ button {
 
 .fuji-caption {
   font-family: 'Brush Script MT', cursive;
-  font-size: 16px;
+  font-size: 32px;
   text-align: center;
   color: #333;
   margin-top: 8px;
@@ -321,4 +342,48 @@ button {
   .photo-inner {
     height: auto;
   }
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-box {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-actions button {
+  padding: 10px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #2196f3;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.modal-actions button:hover {
+  background-color: #1976d2;
 }
