@@ -24,6 +24,34 @@ html, body {
 }
 
 /* -----------------------------------
+   Title Containers
+----------------------------------- */
+.layout-header {
+  text-align: center;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+}
+
+.layout-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.layout-header p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  color: #555;
+}
+
+
+
+
+/* -----------------------------------
    Camera Section
 ----------------------------------- */
 .camera-section {
@@ -386,4 +414,32 @@ button {
 
 .modal-actions button:hover {
   background-color: #1976d2;
+}
+
+/********* polaroid *******/
+.polaroid-filter {
+  filter: contrast(1.05) brightness(1.1) saturate(0.8) sepia(0.2);
+}
+.action-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+}
+
+.action-btn:hover {
+  background-color: #0056b3;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
 }
