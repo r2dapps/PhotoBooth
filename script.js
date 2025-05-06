@@ -7,6 +7,56 @@ const downloadBtn = document.getElementById('downloadBtn');
 const captionInput = document.getElementById('captionInput');
 const applyCaptionBtn = document.getElementById('applyCaptionBtn');
 
+// Tutorial Button
+const tutorialBtn = document.getElementById('tutorialBtn');
+
+// Tutorial Modal
+const tutorialModal = document.createElement('div');
+tutorialModal.id = 'tutorialModal';
+tutorialModal.innerHTML = `
+   <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>How to Use the Photobooth</h2>
+    <p>Welcome to the photobooth app! Here's how to use it:</p>
+    <ol>
+      <li><strong>Switch Camera:</strong> 
+        <ul>
+          <li><strong>Mobile Users:</strong> Tap the "Switch Camera" button to toggle between the front and back camera on your device.</li>
+          <li><strong>Desktop Users:</strong> If your system has multiple cameras, you can switch between the front and back camera using the same button.</li>
+        </ul>
+      </li>
+      <li><strong>Capture a Photo:</strong> Click the "Capture" button to take a snapshot of your scene.</li>
+      <li><strong>Apply Filter:</strong> Use the "🎨 Polaroid Vibe" button to apply a filter to the captured image for a fun vintage effect.</li>
+      <li><strong>Add Caption:</strong> Type a caption in the input field and click "Apply Caption" to add it to your photo.</li>
+      <li><strong>Change Layout:</strong> Switch between single, grid, or strip layouts for displaying your photos. You can choose how you'd like your photos to be shown after capturing them.</li>
+      <li><strong>Background Color for Saving Image:</strong> Use the color picker to choose a background color for your saved photo. This color will be applied behind your image when downloaded.</li>
+      <li><strong>Download Photos:</strong> Once you've captured your photo(s) and applied any changes, click the "Download" button to save your photo(s) in the layout you selected.</li>
+    </ol>
+    <p>If you have any further questions, feel free to ask!</p>
+  </div>
+`;
+document.body.appendChild(tutorialModal);
+
+// Show tutorial modal when the tutorial button is clicked
+tutorialBtn.addEventListener('click', () => {
+  tutorialModal.style.display = 'block';
+});
+
+// Close the tutorial modal when the "x" button is clicked
+const closeModal = tutorialModal.querySelector('.close');
+closeModal.addEventListener('click', () => {
+  tutorialModal.style.display = 'none';
+});
+
+// Close the modal when clicking outside of it
+window.addEventListener('click', (event) => {
+  if (event.target === tutorialModal) {
+    tutorialModal.style.display = 'none';
+  }
+});
+
+
+
 let useFrontCamera = true;
 let currentStream = null;
 
@@ -223,7 +273,9 @@ function downloadPhoto() {
 captureBtn.addEventListener('click', capturePhoto);
 resetBtn.addEventListener('click', resetPhotos);
 applyCaptionBtn.addEventListener('click', applyCaptions);
+
 const filterToggleBtn = document.getElementById('filterToggleBtn');
+
 let filterEnabled = false;
 
 //polaroid effect
