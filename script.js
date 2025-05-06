@@ -240,7 +240,6 @@ filterToggleBtn.addEventListener('click', () => {
 });
 
 
-
 downloadBtn.addEventListener('click', async () => {
   const inputFields = document.querySelectorAll('.fuji-frame input');
   inputFields.forEach(input => {
@@ -259,7 +258,9 @@ downloadBtn.addEventListener('click', async () => {
   const outputHeight = exportLayout === 'grid' ? 800 : (exportLayout === 'strip' ? 1200 : 500);
 
   const exportWrapper = document.createElement('div');
-  exportWrapper.style.backgroundColor = '#ffffff';
+  const bgColor = document.getElementById('bgColorPicker').value;
+  exportWrapper.style.backgroundColor = bgColor;// added color picker
+  //exportWrapper.style.backgroundColor = '#ffffff';
   exportWrapper.style.padding = '30px';
   exportWrapper.style.boxSizing = 'border-box';
   exportWrapper.style.width = `${outputWidth}px`;
