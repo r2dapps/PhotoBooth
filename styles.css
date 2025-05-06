@@ -272,7 +272,7 @@ button {
   flex-direction: column;
   align-items: center;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /*Polaroid shadow*/
-  border: 1px solid #c72020;
+  border: 3px solid #e5ebe9;
   transform: rotate(-1deg); /* Optional tilt */
   transition: transform 0.2s ease;
 }
@@ -442,4 +442,17 @@ button {
   gap: 10px;
   justify-content: center;
   margin-top: 20px;
+}
+
+
+/******color picker*******/
+.color-picker-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.color-picker-container label {
+  margin-right: 8px;
+  font-weight: bold;
+  font-size: 14px;
 }
