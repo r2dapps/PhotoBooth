@@ -22,7 +22,10 @@
     </div>
     <div class="camera-controls">
       <div class="button-group">
+        <!-- Tutorial Button -->
+        <button id="tutorialBtn">📘 Tutorial</button>
 
+        <!-- Switch Camera Button -->
         <button id="switchCameraBtn">🔄 Switch Camera</button>
         <button id="captureBtn">📸 Take Photo</button>
         <button id="resetBtn">♻ Retake / Clear</button>
@@ -41,6 +44,10 @@
       </div>
     </div>
 
+    <div class="color-picker-container">
+      <label for="bgColorPicker">📌 Background Color:</label>
+      <input type="color" id="bgColorPicker" value="#ffffff">
+    </div>
     <div class="layout-controls">
       <button class="layout-btn" data-layout="single">Single</button>
       <button class="layout-btn" data-layout="grid">2x2 Grid</button>
@@ -48,10 +55,6 @@
     </div>
 
     <button id="downloadBtn">💾 Download Photo</button>
-    <div class="color-picker-container">
-      <label for="bgColorPicker">📌 Background Color:</label>
-      <input type="color" id="bgColorPicker" value="#ffffff">
-    </div>
     
 
   </div>
