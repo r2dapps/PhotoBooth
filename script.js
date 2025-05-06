@@ -60,8 +60,14 @@ function capturePhoto() {
 
   canvas.width = width;
   canvas.height = height;
-  context.drawImage(video, 0, 0, width, height);
-
+ // context.drawImage(video, 0, 0, width, height);
+  context.save();
+if (useFrontCamera) {
+  context.translate(width, 0);
+  context.scale(-1, 1);
+}
+context.drawImage(video, 0, 0, width, height);
+context.restore();
   const dataUrl = canvas.toDataURL('image/png');
   const captionText = captionInput.value.trim();
 
