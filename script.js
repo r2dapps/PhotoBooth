@@ -28,6 +28,7 @@ async function startCamera() {
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
     currentStream = stream;
     video.srcObject = stream;
+    
     // Apply mirror effect if front camera is used
     video.style.transform = useFrontCamera ? 'scaleX(-1)' : 'scaleX(1)';
   } catch (err) {
@@ -61,6 +62,10 @@ function capturePhoto() {
   canvas.width = width;
   canvas.height = height;
   context.save();
+
+  if (filterEnabled) {
+    context.filter = 'contrast(1.05) brightness(1.1) saturate(0.8) sepia(0.2)';
+  }
 if (useFrontCamera) {
   context.translate(width, 0);
   context.scale(-1, 1);
@@ -111,6 +116,12 @@ function resetPhotos() {
 
 function switchLayout(layout) {
   currentLayout = layout;
+
+   // Update visible layout name
+   const layoutText = layout.charAt(0).toUpperCase() + layout.slice(1);
+   document.getElementById('currentLayout').textContent = layoutText;
+ 
+
   photoInner.innerHTML = '';
   photoInner.className = 'photo-inner'; // Reset all layout-specific classes
 
@@ -212,6 +223,23 @@ function downloadPhoto() {
 captureBtn.addEventListener('click', capturePhoto);
 resetBtn.addEventListener('click', resetPhotos);
 applyCaptionBtn.addEventListener('click', applyCaptions);
+const filterToggleBtn = document.getElementById('filterToggleBtn');
+let filterEnabled = false;
+
+//polaroid effect
+filterToggleBtn.addEventListener('click', () => {
+  filterEnabled = !filterEnabled;
+  filterToggleBtn.textContent = filterEnabled ? '🎨 Remove Filter' : '🎨 Polaroid Vibe';
+
+  // if (filterEnabled) {
+  //   video.classList.add('polaroid-filter');
+  //   filterToggleBtn.textContent = 'Remove Filter';
+  // } else {
+  //   video.classList.remove('polaroid-filter');
+  //   filterToggleBtn.textContent = 'Apply Filter';
+  // }
+});
+
 
 downloadBtn.addEventListener('click', async () => {
   const inputFields = document.querySelectorAll('.fuji-frame input');
