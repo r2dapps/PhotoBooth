@@ -28,6 +28,8 @@ async function startCamera() {
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
     currentStream = stream;
     video.srcObject = stream;
+    // Apply mirror effect if front camera is used
+    video.style.transform = useFrontCamera ? 'scaleX(-1)' : 'scaleX(1)';
   } catch (err) {
     console.error('Camera access error:', err);
     alert('Unable to access the camera.');
