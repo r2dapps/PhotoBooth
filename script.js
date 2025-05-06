@@ -186,7 +186,7 @@ function downloadPhoto() {
     scrollY: -window.scrollY,
     width: tempWidth,
     height: tempHeight,
-    scale: 2 // 🔍 Higher scale = higher resolution (1 is default)
+    scale: DPI / 96// 🔍 Higher scale = higher resolution (1 is default)
   }).then(canvas => {
     const resized = document.createElement('canvas');
     resized.width = tempWidth;
