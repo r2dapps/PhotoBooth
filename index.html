@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Photobooth with Fuji Frame</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <!-- Camera Section -->
+  <div class="camera-section">
+    <div class="camera-box">
+      <video id="camera" autoplay playsinline muted></video>
+    </div>
+    <div class="camera-controls">
+      <button id="switchCameraBtn">🔄 Switch Camera</button>
+      <button id="captureBtn">📸 Take Photo</button>
+      <button id="resetBtn">♻ Retake / Clear</button>
+    </div>
+  </div>
+
+  <!-- Photo Display Section -->
+  <div class="photo-section">
+    <div class="photo-frame">
+      <div class="photo-inner" id="photoInner"></div>
+      <div class="photo-caption-space">
+        <input type="text" id="captionInput" class="caption-input" placeholder="Add a caption...">
+        <button id="applyCaptionBtn">✍️ Apply Caption</button>
+      </div>
+    </div>
+
+    <div class="layout-controls">
+      <button class="layout-btn" data-layout="single">Single</button>
+      <button class="layout-btn" data-layout="grid">2x2 Grid</button>
+      <!-- <button class="layout-btn" data-layout="strip">Strip</button> -->
+    </div>
+
+    <button id="downloadBtn">💾 Download Photo</button>
+  </div>
+
+
+</div>
+
+<canvas id="snapshotCanvas" style="display: none;"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
