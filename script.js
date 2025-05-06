@@ -229,16 +229,16 @@ let filterEnabled = false;
 //polaroid effect
 filterToggleBtn.addEventListener('click', () => {
   filterEnabled = !filterEnabled;
-  filterToggleBtn.textContent = filterEnabled ? '🎨 Remove Filter' : '🎨 Polaroid Vibe';
 
-  // if (filterEnabled) {
-  //   video.classList.add('polaroid-filter');
-  //   filterToggleBtn.textContent = 'Remove Filter';
-  // } else {
-  //   video.classList.remove('polaroid-filter');
-  //   filterToggleBtn.textContent = 'Apply Filter';
-  // }
+  if (filterEnabled) {
+    video.classList.add('polaroid-filter');
+    filterToggleBtn.textContent = '🎨 Remove Filter';
+  } else {
+    video.classList.remove('polaroid-filter');
+    filterToggleBtn.textContent = '🎨 Polaroid Vibe';
+  }
 });
+
 
 
 downloadBtn.addEventListener('click', async () => {
