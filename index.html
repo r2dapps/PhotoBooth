@@ -7,7 +7,13 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+  <!-- Title Section -->
+  <div id="layoutHeader" class="layout-header">
+    <h2>📸 Photo Booth</h2>
+    <p>Current Layout: <strong id="currentLayout">Single</strong></p>
+  </div>
+  
+  
 <div class="container">
   <!-- Camera Section -->
   <div class="camera-section">
@@ -15,9 +21,13 @@
       <video id="camera" autoplay playsinline muted></video>
     </div>
     <div class="camera-controls">
-      <button id="switchCameraBtn">🔄 Switch Camera</button>
-      <button id="captureBtn">📸 Take Photo</button>
-      <button id="resetBtn">♻ Retake / Clear</button>
+      <div class="button-group">
+
+        <button id="switchCameraBtn">🔄 Switch Camera</button>
+        <button id="captureBtn">📸 Take Photo</button>
+        <button id="resetBtn">♻ Retake / Clear</button>
+        <button id="filterToggleBtn" class="action-btn">🎨 Polaroid Vibe</button>
+      </div>
     </div>
   </div>
 
